@@ -1,1 +1,14 @@
-<h1>Test</h1>
+<div class="dreamcard-container">
+<% @dreams.each do |dream| %>
+    <div class="dreamcard">
+    <img class="dreamcard-image" src="#" alt="">
+    <div class="dreamcard-info">
+       <h2> <%= dream.title %> </h2>
+      <div class="dreamcard-tags">
+        <p class="tag"> <%= dream.category %> </p>
+      </div>
+      <p class="dreamcard-text"> <%= dream.price %> </p>
+    </div>
+  </div>
+  <% end %>
+</div>
