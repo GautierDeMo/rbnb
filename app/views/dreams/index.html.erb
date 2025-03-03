@@ -8,6 +8,7 @@
         <p class="tag"> <%= dream.category %> </p>
       </div>
       <p class="dreamcard-text"> <%= dream.price %> </p>
+      <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
     </div>
   </div>
   <% end %>
