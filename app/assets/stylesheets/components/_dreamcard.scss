@@ -1,0 +1,51 @@
+.dreamcard-container {
+  display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cartes responsives */
+    gap: 20px; /* Espacement entre les cartes */
+    width: 100%; /* Remplit toute la largeur */
+    min-height: 100vh; /* Remplit au moins toute la hauteur de l’écran */
+    padding: 20px; /* Ajoute un peu d’espace autour */
+    box-sizing: border-box;
+}
+
+.dreamcard {
+}
+
+.dreamcard-image {
+  width: 100%;
+  height: 210px;
+  align-self: stretch;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.dreamcard-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+
+}
+
+.dreamcard-tags {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  margin-bottom: 0;
+}
+
+.tag {
+  display: flex;
+  padding: 6px 12px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #D9D9D9;
+}
+
+p {
+  margin-bottom: 0px;
+}
