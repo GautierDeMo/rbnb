@@ -1,0 +1,29 @@
+.hero-banner {
+  display: flex;
+  align-items: center;
+  height: 380px;
+  //padding : 60px;
+  border-radius: 20px;
+  background-color: #2E236C;
+  margin: 30px; //enlever le margin
+}
+
+.hero-content {
+  text-align: left;
+  margin-left: 60px;
+  width: 614px;
+}
+
+.title {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.content {
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+}
