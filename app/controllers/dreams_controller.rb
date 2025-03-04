@@ -21,6 +21,11 @@ class DreamsController < ApplicationController
     redirect_to dream_path(@dream)
   end
 
+  def destroy
+    @dream = Dream.find(params[:id])
+    @dream.destroy
+    redirect_to dashboard_path()
+  end
   private
 
   def dream_params
