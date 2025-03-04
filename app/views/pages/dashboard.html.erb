@@ -9,3 +9,12 @@
     </li>
   <% end %>
 </ul>
+
+<ul>
+  <% @dreams.each do |dream| %>
+    <li>
+      <%= dream.user_id %>
+      <%= dream.title %>
+    </li>
+  <% end %>
+</ul>

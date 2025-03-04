@@ -17,6 +17,12 @@ class BookingsController < ApplicationController
     redirect_to dream_booking_path(@dream, @booking)
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path(@booking.dream)
+  end
+  
   private
 
   def booking_params
