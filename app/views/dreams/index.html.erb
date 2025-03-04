@@ -1,15 +1,29 @@
 <div class="dreamcard-container">
-<% @dreams.each do |dream| %>
-    <div class="dreamcard">
-    <img class="dreamcard-image" src="#" alt="">
-    <div class="dreamcard-info">
-       <h2> <%= dream.title %> </h2>
-      <div class="dreamcard-tags">
-        <p class="tag"> <%= dream.category %> </p>
+  <% @dreams.each do |dream| %>
+    <%  if (dream.picture.key == nil) %>
+      <div class="dreamcard">
+        <img class="dreamcard-image" src="#" alt="">
+        <div class="dreamcard-info">
+          <h2> <%= dream.title %> </h2>
+          <div class="dreamcard-tags">
+            <p class="tag"> <%= dream.category %> </p>
+          </div>
+          <p class="dreamcard-text"> <%= dream.price %> </p>
+          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+        </div>
       </div>
-      <p class="dreamcard-text"> <%= dream.price %> </p>
-      <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
-    </div>
-  </div>
+    <% else %>
+      <div class="dreamcard">
+        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+        <div class="dreamcard-info">
+          <h2> <%= dream.title %> </h2>
+          <div class="dreamcard-tags">
+            <p class="tag"> <%= dream.category %> </p>
+          </div>
+          <p class="dreamcard-text"> <%= dream.price %> </p>
+          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

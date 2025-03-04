@@ -15,6 +15,7 @@ class DreamsController < ApplicationController
   def create
     @user = current_user
     @dream = Dream.new(dream_params)
+    @dream.user_id = @user.id
     @dream.save
     redirect_to dream_path(@dream)
   end
