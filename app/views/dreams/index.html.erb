@@ -1,8 +1,8 @@
 <div class="dreamcard-container">
   <% @dreams.each do |dream| %>
-    <%  if (dream.picture.key == nil) %>
+    <%  if (dream.picture.attached?) %>
       <div class="dreamcard">
-        <img class="dreamcard-image" src="#" alt="">
+        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
         <div class="dreamcard-info">
           <h2> <%= dream.title %> </h2>
           <div class="dreamcard-tags">
@@ -14,7 +14,7 @@
       </div>
     <% else %>
       <div class="dreamcard">
-        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+        <img class="dreamcard-image" src="#" alt="">
         <div class="dreamcard-info">
           <h2> <%= dream.title %> </h2>
           <div class="dreamcard-tags">
