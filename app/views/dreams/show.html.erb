@@ -1,10 +1,17 @@
-    <h5 class="card-title text-white"><%= @dream.title %></h5>
-
-<div class="card text-bg-dark">
-  <%= image_tag 'johannes-plenio-DKix6Un55mw-unsplash.jpg', class: "card-img rounded", alt: "bannière" %>
+<div class="detailed-card">
+  <div class="titles">
+    <h5 class="card-title text-white">Categorie : <%= @dream.category %></h5>
+  </div>
+  <div class="card text-bg-white detailed-banner">
+    <%  if @dream.picture.attached? %>
+      <%= cl_image_tag @dream.picture.key, height: 300, class: "w-100", crop: :fill %>
+    <% else %>
+      <%= image_tag 'johannes-plenio-DKix6Un55mw-unsplash.jpg', class: "card-img rounded", alt: "bannière"  %>
+    <% end %>
+  </div>
   <div class="card-img-overlay">
-    <p class="card-text"><%= @dream.description %></p>
-    <p class="card-text"><small><%= @dream.category %></small></p>
+    <p class="card-text"><%= @dream.title %></p>
+    <p class="card-text"><small><%= @dream.description %></small></p>
     <p class="card-text"><small><%= @dream.price %></small></p>
   </div>
-</div>
+  </div>
