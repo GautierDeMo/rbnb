@@ -1,15 +1,82 @@
-<div class="dreamcard-container">
-<% @dreams.each do |dream| %>
-    <div class="dreamcard">
-    <img class="dreamcard-image" src="#" alt="">
-    <div class="dreamcard-info">
-       <h2> <%= dream.title %> </h2>
-      <div class="dreamcard-tags">
-        <p class="tag"> <%= dream.category %> </p>
-      </div>
-      <p class="dreamcard-text"> <%= dream.price %> </p>
-      <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
-    </div>
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-content">
+    <h1 class="title">Louez un rêve pour la nuit,<br>plongez dans l’inconnu.</h1>
+    <p class="content">Et si cette nuit, vous choisissiez votre rêve ? Embarquez dans un<br>voyage onirique unique. Chaque nuit devient une nouvelle aventure.</p>
   </div>
+</div>
+
+<!-- CATEGORY -->
+<div class="categories-container">
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+  <button class="category">
+    <i class="fa-regular fa-flag"></i>
+    <p class="category-title">Aventure</p>
+  </button>
+</div>
+
+<!-- DREAM LIST -->
+<div class="dreamcard-container">
+  <% @dreams.each do |dream| %>
+    <%  if (dream.picture.attached?) %>
+      <div class="dreamcard">
+        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+        <div class="dreamcard-info">
+          <h2> <%= dream.title %> </h2>
+          <div class="dreamcard-tags">
+            <p class="tag"> <%= dream.category %> </p>
+          </div>
+          <p class="dreamcard-text"> <%= dream.price %> </p>
+          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="dreamcard">
+        <img class="dreamcard-image" src="#" alt="">
+        <div class="dreamcard-info">
+          <h2> <%= dream.title %> </h2>
+          <div class="dreamcard-tags">
+            <p class="tag"> <%= dream.category %> </p>
+          </div>
+          <p class="dreamcard-text"> <%= dream.price %> </p>
+          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
