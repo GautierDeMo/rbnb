@@ -33,7 +33,7 @@ dreams = [
     price: 1
   },
   {
-    title: "La Chute Finie",
+    title: "La Chute Infinie",
     description: "Vous tombez, mais tout est paisible. Autour de vous, des fragments de souvenirs flottent, suspendus dans l’air. Vous voyez des portes ouvertes au milieu du ciel : certaines mènent à des forêts, d’autres à des bibliothèques flottantes ou à des ruines extraterrestres. À vous de choisir où atterrir… ou de continuer à chuter.",
     picture: "",
     category: "Voyage intérieur",
