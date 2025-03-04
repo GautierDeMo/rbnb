@@ -1,9 +1,7 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :home
-
-  def home
+  def dashboard
+    @user = current_user
+    @bookings = @user.bookings
+    @dreams = @user.dreams
   end
-
-  #def dashboard
-  #end
 end
