@@ -5,7 +5,7 @@
         <%= f.input :title %>
         <%= f.input :description %>
         <%= f.input :picture, as: :file  %>
-        <%= f.input :category%>
+        <%= f.input :category, collection: [ "Aventure", "Fantastique", "Mystère", "Relaxant", "Voyage Intérieur"] %>
         <%= f.input :price %>
         <%= f.submit %>
       <% end %>

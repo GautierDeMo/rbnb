@@ -8,16 +8,27 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
   <body>
+    <!-- NAVBAR -->
     <%= render "shared/navbar" %>
+
+    <!-- GLOBAL CONTAINER -->
     <div class="global-container">
       <%= render "shared/flashes" %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-
       <%= yield %>
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <!-- Ajouter le logo ICI -->
+      <p>Louez un rêve pour la nuit.</p>
+      <p>Made with 💜 at Le Wagon.</p>
+      </div>
   </body>
 </html>

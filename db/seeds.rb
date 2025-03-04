@@ -1,9 +1,10 @@
 puts "Deleting all dreams..."
 Dream.destroy_all
+User.destroy_all
 
 puts "Adding new dreams..."
 
-User.create!(
+@user = User.create!(
   email: "test@example.com",
   password: "password123", # Remplace par un mot de passe sécurisé
   password_confirmation: "password123",
@@ -17,7 +18,7 @@ dreams = [
     picture: "",
     category: "Aventure",
     price: 5,
-    user_id: 1
+    user_id: @user.id
   },
   {
     title: "La Ville qui Chante",
@@ -25,7 +26,7 @@ dreams = [
     picture: "",
     category: "Fantastique",
     price: 2,
-    user_id: 1
+    user_id: @user.id
   },
   {
     title: "L’Île aux Souvenirs Perdus",
@@ -33,7 +34,7 @@ dreams = [
     picture: "",
     category: "Relaxant",
     price: 3,
-    user_id: 1
+    user_id: @user.id
   },
   {
     title: "Le Grand Bal des Ombres",
@@ -41,7 +42,7 @@ dreams = [
     picture: "",
     category: "Mystère",
     price: 1,
-    user_id: 1
+    user_id: @user.id
   },
   {
     title: "La Chute Infinie",
@@ -49,7 +50,7 @@ dreams = [
     picture: "",
     category: "Voyage intérieur",
     price: 3,
-    user_id: 1
+    user_id: @user.id
   }
 ]
 
