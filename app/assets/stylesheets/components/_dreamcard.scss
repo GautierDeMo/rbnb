@@ -1,6 +1,6 @@
 .dreamcard-container {
   display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     width: 100%;
     min-height: 100vh;
@@ -48,4 +48,22 @@
 
 p {
   margin-bottom: 0px;
+}
+
+@media (max-width: 1400px) {
+  .dreamcard-container {
+      grid-template-columns: repeat(3, 1fr); /* 3 cartes sur écran moyen */
+  }
+}
+
+@media (max-width: 900px) {
+  .dreamcard-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 cartes sur tablette */
+  }
+}
+
+@media (max-width: 600px) {
+  .dreamcard-container {
+      grid-template-columns: repeat(1, 1fr); /* 1 carte sur mobile */
+  }
 }
