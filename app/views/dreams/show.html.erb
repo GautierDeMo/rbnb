@@ -1,4 +1,16 @@
+<h5 class="card-title text-white"><%= @dream.title %></h5>
+
+<div class="card text-bg-dark">
+  <%= image_tag 'johannes-plenio-DKix6Un55mw-unsplash.jpg', class: "card-img rounded", alt: "bannière" %>
+  <div class="card-img-overlay">
+    <p class="card-text"><%= @dream.description %></p>
+    <p class="card-text"><small><%= @dream.category %></small></p>
+    <p class="card-text"><small><%= @dream.price %></small></p>
+  </div>
+</div>
+
 <%= @dream.title %>
 <%  if @dream.picture.attached? %>
   <%= cl_image_tag @dream.picture.key, height: 300, width: 400, crop: :fill %>
 <% end %>
+
