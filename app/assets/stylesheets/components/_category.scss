@@ -1,0 +1,28 @@
+button {
+  text-decoration: none;
+  border: none;
+}
+
+.categories-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+}
+
+.category {
+  display: flex;
+  width: 120px;
+  height: 97px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  color: #9D9D9D;
+
+  :hover {
+    color: #5D63F1;
+  }
+}
+
+.category-title{}
