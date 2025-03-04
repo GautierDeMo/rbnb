@@ -6,6 +6,7 @@ class DreamsController < ApplicationController
 
   def show
     @dream = Dream.find(params[:id])
+    @booking = Booking.new
   end
 
   def new

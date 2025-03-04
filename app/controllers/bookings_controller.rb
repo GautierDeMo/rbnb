@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_dream
+  before_action :set_dream, except: [:show]
 
   def show
     @booking = Booking.find(params[:id])
@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @booking.dream = @dream
   end
 
   def create
@@ -15,13 +14,13 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.dream = @dream
     @booking.save
-    redirect_to dream_bookings_path(params[:dream_id])
+    redirect_to dream_booking_path(@dream, @booking)
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :dream_id)
+    params.require(:booking).permit(:reservation_date, :user_id, :dream_id)
   end
 
   def set_dream
