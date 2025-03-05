@@ -1,2 +1,6 @@
-<h2><%= dream.title %></h2>
-<p><%= dream.address %></p>
+<%= link_to dream_path(dream), class: "text-decoration-none" do %>
+  <div>
+    <h2 class="no-margin"><%= dream.title %></h2>
+    <p class="no-margin"><%= dream.address %></p>
+  </div>
+<% end %>
