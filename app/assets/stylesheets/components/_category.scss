@@ -12,17 +12,34 @@ button {
 
 .category {
   display: flex;
-  width: 120px;
-  height: 97px;
+  width: 140px;
+  height: 100px;
   padding: 10px;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 4px;
-  color: #9D9D9D;
+  border-radius: 10px;
+  background-color: #21232B;
+  //color: #9D9D9D;
+  color: white;
+  transition: background-color 0.3s ease;
 
-  :hover {
-    color: #5D63F1;
+  img {
+    height: 30px;
+  }
+
+  p {
+    margin-bottom: 0px;
   }
 }
 
-.category-title{}
+.category.active {
+  background-color: #2D2F3B;
+  color: white;
+}
+
+.category:hover {
+  background-color: #5D63F1;
+  color: white;
+}
