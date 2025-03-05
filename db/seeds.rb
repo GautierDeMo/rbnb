@@ -1,9 +1,9 @@
 require "open-uri"
 
 puts "Deleting all..."
+Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
-Booking.destroy_all
 
 puts "Adding user#1..."
 
