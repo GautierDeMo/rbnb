@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col text-white">
       <%= simple_form_for(@dream) do |f| %>
-        <%= f.input :title %>
-        <%= f.input :description %>
-        <%= f.input :picture, as: :file  %>
-        <%= f.input :category, collection: [ "Aventure", "Fantastique", "Mystère", "Relaxant", "Voyage Intérieur"] %>
-        <%= f.input :price %>
-        <%= f.submit %>
+        <%= f.input :title, label: 'Titre' %>
+        <%= f.input :description, label: 'Description' %>
+        <%= f.input :picture, as: :file, label: 'Photo' %>
+        <%= f.input :category, collection: [ "Aventure", "Fantastique", "Mystère", "Relaxant", "Voyage Intérieur"], label: 'Catégorie' %>
+        <%= f.input :price, label: 'Prix' %>
+        <%= f.submit 'Fais nous rêver' %>
       <% end %>
     </div>
   </div>

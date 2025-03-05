@@ -24,6 +24,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115744/airbnb-dreams/gvluuqo7wvhvx9yrvddp.webp",
     category: "Aventure",
     price: 5,
+    address: "12 Rue des Lilas, Paris",
     user_id: @user.id
   },
   {
@@ -32,6 +33,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115735/airbnb-dreams/qxir6bjalajc5kwquugy.webp",
     category: "Fantastique",
     price: 2,
+    address: "23 Rue du Château, Nantes",
     user_id: @user.id
   },
   {
@@ -40,6 +42,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115746/airbnb-dreams/zze0xmofwoeptalbc4zw.webp",
     category: "Nostalgie",
     price: 6,
+    address: "7 Place de la Bourse, Bordeaux",
     user_id: @user.id
   },
   {
@@ -48,6 +51,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115747/airbnb-dreams/sldvhgvdyuwlpzaqyohg.webp",
     category: "Surréaliste",
     price: 4,
+    address: "18 Rue de la Liberté, Dijon",
     user_id: @user.id
   },
   {
@@ -56,6 +60,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115747/airbnb-dreams/shpq0f8jhrv4mhpzxxuj.webp",
     category: "Surréaliste",
     price: 5,
+    address: "5 Rue des Fleurs, Nice",
     user_id: @user.id
   },
   {
@@ -64,6 +69,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115776/airbnb-dreams/cqoatqqodhdtjysbaswy.webp",
     category: "Fantastique",
     price: 7,
+    address: "30 Avenue de Bretagne, Lille",
     user_id: @user.id
   },
   {
@@ -72,6 +78,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115770/airbnb-dreams/kagvjrlwkoxw18zciwf2.webp",
     category: "Exploration",
     price: 6,
+    address: "22 Rue Victor Hugo, Rouen",
     user_id: @user.id
   },
   {
@@ -80,6 +87,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115776/airbnb-dreams/obmkiipjbdrpincxcxcc.webp",
     category: "Science-fiction",
     price: 8,
+    address: "8 Avenue des Champs-Élysées, Paris",
     user_id: @user.id
   },
   {
@@ -88,6 +96,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115774/airbnb-dreams/r8h9ukq6hl57flzk61tf.webp",
     category: "Expérience immersive",
     price: 7,
+    address: "14 Rue des Acacias, Strasbourg",
     user_id: @user.id
   },
   {
@@ -96,6 +105,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115772/airbnb-dreams/xtcjwnc6jcbp8azcnyip.webp",
     category: "Relaxant",
     price: 5,
+    address: "9 Place du Capitole, Toulouse",
     user_id: @user.id
   },
   {
@@ -104,6 +114,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115770/airbnb-dreams/apcitf1v88yms0u0rw25.webp",
     category: "Romance",
     price: 6,
+    address: "27 Avenue Jean Médecin, Nice",
     user_id: @user.id
   }
 ]
@@ -114,6 +125,7 @@ dreams.each do |dream_data|
     description: dream_data[:description],
     category: dream_data[:category],
     price: dream_data[:price],
+    address: dream_data[:address],
     user_id: dream_data[:user_id]
   )
 
