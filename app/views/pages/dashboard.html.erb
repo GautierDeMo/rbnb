@@ -2,19 +2,14 @@
 <div data-controller="buttonsvalidation">
   <h2>Réservations de mes rêves</h2>
   <% @dreams.each do |dream| %>
-    <% @allbookings.each do |booking| %>
+      <% allbookings = dream.bookings %>
+    <% allbookings.each do |booking| %>
       <% if (booking.dream == dream) %>
         <%= dream.title %>
         <%= User.find(booking.user_id).username %>
-        <button class="btn btn-success" data-action="click->buttonsvalidation#validate" data-buttonsvalidation-target="validateBtn">Validé</button>
-        <button class="btn btn-danger" data-action="click->buttonsvalidation#decline" data-buttonsvalidation-target="declineBtn">Refusé</button>
-          <% if booking.status == archived %>
-            <p>Validé</p>
-          <% elsif booking.status == decline %>
-            <p>Refusé</p>
-          <% else %>
-            <p>En attente</p>
-          <% end %>
+        <%= link_to "Valider", accept_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <%= link_to "Refuser", decline_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <%= booking.status %>
       <% end %>
     <% end %>
   <% end %>
