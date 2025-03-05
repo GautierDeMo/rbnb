@@ -16,11 +16,6 @@
   </div>
 </div>
 
-<%= @dream.title %>
-<%  if @dream.picture.attached? %>
-  <%= cl_image_tag @dream.picture.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-
 <div class="container">
   <div class="row">
     <div class="col">
