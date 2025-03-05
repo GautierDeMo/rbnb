@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_05_113816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "reservation_date"
+    t.integer "status", default: 0
     t.index ["dream_id"], name: "index_bookings_on_dream_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

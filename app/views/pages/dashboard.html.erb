@@ -1,5 +1,25 @@
 <h1>Dashboard</h1>
-
+<div data-controller="buttonsvalidation">
+  <h2>Réservations de mes rêves</h2>
+  <% @dreams.each do |dream| %>
+    <% @allbookings.each do |booking| %>
+      <% if (booking.dream == dream) %>
+        <%= dream.title %>
+        <%= User.find(booking.user_id).username %>
+        <button class="btn btn-success" data-action="click->buttonsvalidation#validate" data-buttonsvalidation-target="validateBtn">Validé</button>
+        <button class="btn btn-danger" data-action="click->buttonsvalidation#decline" data-buttonsvalidation-target="declineBtn">Refusé</button>
+          <% if booking.status == archived %>
+            <p>Validé</p>
+          <% elsif booking.status == decline %>
+            <p>Refusé</p>
+          <% else %>
+            <p>En attente</p>
+          <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<h2>Mes réservations</h2>
 <ul>
   <% @bookings.each do |booking| %>
     <li>
@@ -13,7 +33,7 @@
     </li>
   <% end %>
 </ul>
-
+<h2>Mes rêves</h2>
 <ul>
   <% @dreams.each do |dream| %>
     <li>
