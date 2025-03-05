@@ -2,6 +2,12 @@ class DreamsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @dreams = Dream.all
+    # The `geocoded` scope filters only dreams with coordinates
+    @markers = @dreams.geocoded.map do |dream|
+      {
+        lat: dream.latitude,
+        lng: dream.longitude
+      }
   end
 
   def show
