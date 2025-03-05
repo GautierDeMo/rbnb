@@ -6,6 +6,10 @@
       <%= booking.user_id %>
       <%= booking.dream.title %>
       <%= booking.reservation_date %>
+      <%= link_to "Annuler réservation",
+      booking_path(booking),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
     </li>
   <% end %>
 </ul>
@@ -13,6 +17,12 @@
 <ul>
   <% @dreams.each do |dream| %>
     <li>
+      <%= dream.user_id %>
+      <%= dream.title %>
+      <%= link_to "Supprimer rêve",
+      dream_path(dream),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
       <%  if (dream.picture.attached?) %>
         <div class="dreamcard">
           <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
