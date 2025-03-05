@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_dream, only: [:new, :create]
 
+
   def show
     @booking = Booking.find(params[:id])
   end
