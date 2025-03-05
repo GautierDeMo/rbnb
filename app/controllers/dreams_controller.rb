@@ -8,6 +8,7 @@ class DreamsController < ApplicationController
         lat: dream.latitude,
         lng: dream.longitude
       }
+    end
   end
 
   def show
