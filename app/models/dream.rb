@@ -5,4 +5,16 @@ class Dream < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :price, presence: true
+
+  DREAM_CATEGORIES = [
+    "Aventure",
+    "Surréaliste",
+    "Fantastique",
+    "Relaxant",
+    "Mystère",
+    "Romance",
+    "Nostalgie",
+    "Exploration",
+    "Immersion"
+  ]
 end

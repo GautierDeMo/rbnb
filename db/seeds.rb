@@ -7,10 +7,10 @@ User.destroy_all
 puts "Adding user#1..."
 
 @user = User.create!(
-  email: "test@example.com",
-  password: "password123",
-  password_confirmation: "password123",
-  username: "testuser"
+  email: "admin@admin",
+  password: "adminadmin",
+  password_confirmation: "adminadmin",
+  username: "admin"
 )
 
 puts "User#1 are now in the database!✅"

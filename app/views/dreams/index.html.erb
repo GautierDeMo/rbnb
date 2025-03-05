@@ -8,47 +8,14 @@
 
 <!-- CATEGORY -->
 <div class="categories-container">
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
-  <button class="category">
-    <i class="fa-regular fa-flag"></i>
-    <p class="category-title">Aventure</p>
-  </button>
+  <% Dream::DREAM_CATEGORIES.each do |category| %>
+    <button class="category <%= 'active' if params[:category] == category %>">
+      <img src="<%= asset_path("categories/#{category.parameterize}.svg") %>" alt="<%= category %>">
+      <p class="category-title"><%= category %></p>
+    </button>
+  <% end %>
 </div>
+
 
 <!-- DREAM LIST -->
 <div class="dreamcard-container">
