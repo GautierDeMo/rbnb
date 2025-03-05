@@ -15,21 +15,3 @@
     </div>
   </div>
 </div>
-
-<%= @dream.title %>
-<%  if @dream.picture.attached? %>
-  <%= cl_image_tag @dream.picture.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= simple_form_for [@dream, @booking] do |f| %>
-        <%= f.input :reservation_date,
-                    as: :string,
-                    input_html: { data: { controller: "datepicker" } } %>
-        <%= f.submit "Book a dream!"%>
-      <% end %>
-    </div>
-  </div>
-</div>
