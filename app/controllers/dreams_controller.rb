@@ -1,13 +1,17 @@
 class DreamsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+
   def index
     @dreams = Dream.all
     # The `geocoded` scope filters only dreams with coordinates
     @markers = @dreams.geocoded.map do |dream|
       {
         lat: dream.latitude,
-        lng: dream.longitude
+        lng: dream.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {dream: dream}),
+        marker_html: render_to_string(partial: "marker", locals: {dream: dream})
       }
+    end
   end
 
   def show
@@ -32,6 +36,7 @@ class DreamsController < ApplicationController
     @dream.destroy
     redirect_to dashboard_path()
   end
+
   private
 
   def dream_params
