@@ -23,6 +23,33 @@
       dream_path(dream),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
       %>
+      <%  if (dream.picture.attached?) %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+          <div class="dreamcard-info">
+            <p class="tag"> <%= dream.category %> </p>
+            <h2> <%= dream.title %> </h2>
+            <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
+            <div class="dreamcard-price">
+              <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
+              <p>/nuit</p>
+            </div>
+            <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="#" alt="">
+          <div class="dreamcard-info">
+            <h2> <%= dream.title %> </h2>
+            <div class="dreamcard-tags">
+              <p class="tag"> <%= dream.category %> </p>
+            </div>
+            <p class="dreamcard-text"> <%= dream.price %> </p>
+            <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>
