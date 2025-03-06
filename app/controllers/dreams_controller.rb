@@ -7,7 +7,6 @@ class DreamsController < ApplicationController
     else
       @dreams = Dream.all
     end
-
     # The `geocoded` scope filters only dreams with coordinates
     @markers = @dreams.geocoded.map do |dream|
       {
