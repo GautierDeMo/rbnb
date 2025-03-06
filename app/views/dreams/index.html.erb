@@ -18,43 +18,59 @@
     <% end %>
   </div>
 
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: dreams_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Type a keyword"
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-search" %>
+      <% end %>
+    </div>
+  </div>
 
   <!-- DREAM LIST -->
   <div class="dreamcard-container">
-    <% @dreams.each do |dream| %>
-      <%  if (dream.picture.attached?) %>
-        <div class="dreamcard">
-          <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
-          <div class="dreamcard-info">
-            <p class="tag"> <%= dream.category %> </p>
-            <h2> <%= dream.title %> </h2>
-            <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
-            <div class="dreamcard-price">
-              <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
-              <p>/nuit</p>
-            </div>
-            <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
-          </div>
-        </div>
-      <% else %>
-        <div class="dreamcard">
-          <img class="dreamcard-image" src="#" alt="">
-          <div class="dreamcard-info">
-            <h2> <%= dream.title %> </h2>
-            <div class="dreamcard-tags">
+    <% if @dreams.any? %>
+      <% @dreams.each do |dream| %>
+        <%  if (dream.picture.attached?) %>
+          <div class="dreamcard">
+            <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+            <div class="dreamcard-info">
               <p class="tag"> <%= dream.category %> </p>
+              <h2> <%= dream.title %> </h2>
+              <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
+              <div class="dreamcard-price">
+                <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
+                <p>/nuit</p>
+              </div>
+              <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
             </div>
-            <p class="dreamcard-text"> <%= dream.price %> </p>
-            <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
           </div>
-        </div>
+        <% else %>
+          <div class="dreamcard">
+            <img class="dreamcard-image" src="#" alt="">
+            <div class="dreamcard-info">
+              <h2> <%= dream.title %> </h2>
+              <div class="dreamcard-tags">
+                <p class="tag"> <%= dream.category %> </p>
+              </div>
+              <p class="dreamcard-text"> <%= dream.price %> </p>
+              <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
+    <% else %>
+      <em>Sorry, no movies found.</em>
     <% end %>
   </div>
 
   <div data-controller="toggle" class="mt-5 position-fixed" style="bottom: 20px; left: 0; right: 0;">
     <div class="d-flex justify-content-center">
-      <button  data-action="click->toggle#fire" data-toggle-target="button" class="btn btn-primary" style="z-index: 10;">Carte</button>
+      <button  data-action="click->toggle#fire" data-toggle-target="button" class="btn btn-map" style="z-index: 10;">Carte</button>
     </div>
     <div style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: 5"
       data-controller="map"
