@@ -7,8 +7,14 @@
       <% if (booking.dream == dream) %>
         <%= dream.title %>
         <%= User.find(booking.user_id).username %>
-        <%= link_to "Valider", accept_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
-        <%= link_to "Refuser", decline_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <% if booking.status == "pending" %>
+          <%= link_to "Valider", accept_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
+          <%= link_to "Refuser", decline_path(booking), class: "btn btn-danger button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <% elsif booking.status == "accepted" %>
+          <%= link_to "Refuser", decline_path(booking), class: "btn btn-danger button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <% elsif booking.status == "decline" %>
+          <%= link_to "Valider", accept_path(booking), class: "btn btn-success button-rental m-1", data: { turbo_method: "PATCH" } %>
+        <% end %>
         <%= booking.status %>
       <% end %>
     <% end %>
