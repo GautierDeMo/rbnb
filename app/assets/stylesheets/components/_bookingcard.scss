@@ -8,7 +8,7 @@
 }
 
 .bookingcard {
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   background: #2D2F3B;
   color: white;
@@ -22,6 +22,10 @@
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 0px;
   }
 }
 
@@ -46,6 +50,11 @@
   .refuse {
     background-color: #A60101;
   }
+
+  .disabled {
+    color: #545454;
+    background-color: #232545;
+  }
 }
 
 .booking-btn {
@@ -57,4 +66,29 @@
   flex: 1 0 0;
   border-radius: 5px;
   color: white;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #2E236C;
+  color: white;
+  align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+.tag.pending {
+  background-color: #EF8300;
+}
+
+.tag.accepted {
+  background-color: #00C24A;
+}
+
+.tag.decline {
+  background-color: #A60101;
 }

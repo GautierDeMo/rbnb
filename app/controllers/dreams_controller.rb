@@ -14,7 +14,7 @@ class DreamsController < ApplicationController
         lat: dream.latitude,
         lng: dream.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: {dream: dream}),
-        marker_html: render_to_string(partial: "marker", locals: {dream: dream})
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
@@ -22,6 +22,8 @@ class DreamsController < ApplicationController
   def show
     @dream = Dream.find(params[:id])
     @booking = Booking.new
+    @reviews = Review.all
+    @review = Review.new
   end
 
   def new

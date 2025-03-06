@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.dream = @dream
     @booking.save
-    redirect_to dream_booking_path(@dream, @booking)
+    redirect_to dashboard_path()
   end
 
   def destroy

@@ -1,32 +1,65 @@
-<div class="detailed-container border-bottom border-light">
-  <div class="detailed-tag">
-    <h5 class="">Categorie : <%= @dream.category %></h5>
+<div class="row border-bottom border-light mb-3">
+  <div class="col-6">
+    <div class="detailed-container">
+      <div class="detailed-tag">
+        <h5 class="">Categorie : <%= @dream.category %></h5>
+      </div>
+      <div class="image-container">
+        <%  if @dream.picture.attached? %>
+          <%= cl_image_tag @dream.picture.key, class: "detailed-image", crop: :fill %>
+        <% else %>
+          <%= image_tag 'johannes-plenio-DKix6Un55mw-unsplash.jpg', class: "detailed-image", alt: "bannière"  %>
+        <% end %>
+      </div>
+      <div class="detailed-info">
+        <h2 class=""><%= @dream.title %></h5>
+        <p class="card-text dreamcard-info"><%= @dream.description %></p>
+        <div class="detailed-price">
+          <p class=""><small class="text-body-secondary"><%= @dream.price %></small></p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="image-container">
-    <%  if @dream.picture.attached? %>
-      <%= cl_image_tag @dream.picture.key, class: "detailed-image", crop: :fill %>
-    <% else %>
-      <%= image_tag 'johannes-plenio-DKix6Un55mw-unsplash.jpg', class: "detailed-image", alt: "bannière"  %>
-    <% end %>
-  </div>
-  <div class="detailed-info">
-    <h2 class=""><%= @dream.title %></h5>
-    <p class="card-text dreamcard-info"><%= @dream.description %></p>
-    <div class="detailed-price">
-      <p class=""><small class="text-body-secondary"><%= @dream.price %></small></p>
+
+  <div class="col-6">
+    <div class="container">
+      <div class="row">
+        <div class="col text-white">
+          <%= simple_form_for [@dream, @booking] do |f| %>
+            <%= f.input :reservation_date,
+                        as: :string,
+                        input_html: { data: { controller: "datepicker" } },
+                        label: 'Date de réservation'%>
+            <%= f.submit "Réserve ton rêve !"%>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div data-controller="review" class="">
   <div class="row">
+    <div class="col-3">
+      <button class="btn btn-outline-primary mb-3" data-action="click->review#fire">Ajoute un commentaire</button>
+    </div>
+  </div>
+
+  <div class="row d-none" data-review-target="form">
     <div class="col text-white">
-      <%= simple_form_for [@dream, @booking] do |f| %>
-        <%= f.input :reservation_date,
-                    as: :string,
-                    input_html: { data: { controller: "datepicker" } },
-                    label: 'Date de réservation'%>
-        <%= f.submit "Réserve ton rêve !"%>
+      <%= simple_form_for([@dream, @user, @review]) do |f| %>
+        <%= f.input :content, label: 'Contenu' %>
+        <%= f.submit 'Commenter' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-white" style='background-color: #15161a;'>
+      <% @reviews.each do |review| %>
+        <%= review.content %>
       <% end %>
     </div>
   </div>

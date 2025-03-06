@@ -1,8 +1,10 @@
-<!-- HERO BANNER -->
-<div class="hero-banner">
-  <div class="hero-content">
-    <h1 class="title">Louez un rêve pour la nuit,<br>plongez dans l’inconnu.</h1>
-    <p class="content">Et si cette nuit, vous choisissiez votre rêve ? Embarquez dans un<br>voyage onirique unique. Chaque nuit devient une nouvelle aventure.</p>
+<div class="position-relative">
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1 class="title">Louez un rêve pour la nuit,<br>plongez dans l’inconnu.</h1>
+      <p class="content">Et si cette nuit, vous choisissiez votre rêve ? Embarquez dans un<br>voyage onirique unique. Chaque nuit devient une nouvelle aventure.</p>
+    </div>
   </div>
 </div>
 <div id="dreams" data-controller="categories">
@@ -18,7 +20,7 @@
 
 
   <!-- DREAM LIST -->
-  <div  class="dreamcard-container">
+  <div class="dreamcard-container">
     <% @dreams.each do |dream| %>
       <%  if (dream.picture.attached?) %>
         <div class="dreamcard">
@@ -50,9 +52,11 @@
     <% end %>
   </div>
 
-  <div data-controller="toggle" class="mt-5">
-    <button  data-action="click->toggle#fire" class="btn btn-outline-primary">Afficher la carte</button>
-    <div style="width: 100%; height: 100vh;"
+  <div data-controller="toggle" class="mt-5 position-fixed" style="bottom: 20px; left: 0; right: 0;">
+    <div class="d-flex justify-content-center">
+      <button  data-action="click->toggle#fire" data-toggle-target="button" class="btn btn-primary" style="z-index: 10;">Carte</button>
+    </div>
+    <div style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: 5"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-toggle-target="togglableElement" class="d-none">
