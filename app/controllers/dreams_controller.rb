@@ -2,7 +2,9 @@ class DreamsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    if params[:category].present?
+    if params[:query].present?
+      @dreams = Dream.global_search(params[:query])
+    elsif params[:category].present?
       @dreams = Dream.where(category: params[:category])
     else
       @dreams = Dream.all
