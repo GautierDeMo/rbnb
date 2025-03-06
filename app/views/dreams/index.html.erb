@@ -5,56 +5,57 @@
     <p class="content">Et si cette nuit, vous choisissiez votre rêve ? Embarquez dans un<br>voyage onirique unique. Chaque nuit devient une nouvelle aventure.</p>
   </div>
 </div>
-
-<!-- CATEGORY -->
-<div class="categories-container">
-  <% Dream::DREAM_CATEGORIES.each do |category| %>
-    <button class="category <%= 'active' if params[:category] == category %>">
-      <img src="<%= asset_path("categories/#{category.parameterize}.svg") %>" alt="<%= category %>">
-      <p class="category-title"><%= category %></p>
-    </button>
-  <% end %>
-</div>
-
-
-<!-- DREAM LIST -->
-<div class="dreamcard-container">
-  <% @dreams.each do |dream| %>
-    <%  if (dream.picture.attached?) %>
-      <div class="dreamcard">
-        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
-        <div class="dreamcard-info">
-          <p class="tag"> <%= dream.category %> </p>
-          <h2> <%= dream.title %> </h2>
-          <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
-          <div class="dreamcard-price">
-            <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
-            <p>/nuit</p>
-          </div>
-          <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
-        </div>
-      </div>
-    <% else %>
-      <div class="dreamcard">
-        <img class="dreamcard-image" src="#" alt="">
-        <div class="dreamcard-info">
-          <h2> <%= dream.title %> </h2>
-          <div class="dreamcard-tags">
-            <p class="tag"> <%= dream.category %> </p>
-          </div>
-          <p class="dreamcard-text"> <%= dream.price %> </p>
-          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
-        </div>
-      </div>
+<div id="dreams" data-controller="categories">
+  <!-- CATEGORY -->
+  <div class="categories-container">
+    <% Dream::DREAM_CATEGORIES.each do |category| %>
+      <%= link_to dreams_path(category: category, anchor: "dreams"), class: "text-decoration-none category #{ 'active' if params[:category] == category}" do %>
+        <%= image_tag "categories/#{category.parameterize}.svg", alt: category  %>
+        <p class="category-title"><%= category %></p>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<div data-controller="toggle" class="mt-5">
-  <button  data-action="click->toggle#fire" class="btn btn-outline-primary">Afficher la carte</button>
-  <div style="width: 100%; height: 100vh;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-toggle-target="togglableElement" class="d-none">
+
+  <!-- DREAM LIST -->
+  <div  class="dreamcard-container">
+    <% @dreams.each do |dream| %>
+      <%  if (dream.picture.attached?) %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+          <div class="dreamcard-info">
+            <p class="tag"> <%= dream.category %> </p>
+            <h2> <%= dream.title %> </h2>
+            <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
+            <div class="dreamcard-price">
+              <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
+              <p>/nuit</p>
+            </div>
+            <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="#" alt="">
+          <div class="dreamcard-info">
+            <h2> <%= dream.title %> </h2>
+            <div class="dreamcard-tags">
+              <p class="tag"> <%= dream.category %> </p>
+            </div>
+            <p class="dreamcard-text"> <%= dream.price %> </p>
+            <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div data-controller="toggle" class="mt-5">
+    <button  data-action="click->toggle#fire" class="btn btn-outline-primary">Afficher la carte</button>
+    <div style="width: 100%; height: 100vh;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-toggle-target="togglableElement" class="d-none">
+    </div>
   </div>
 </div>
