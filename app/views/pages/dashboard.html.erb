@@ -7,6 +7,7 @@
     <% allbookings = dream.bookings %>
     <% allbookings.each do |booking| %>
       <% if (booking.dream == dream) %>
+
         <div class="bookingcard">
           <h3><%= dream.title %></h3>
           <div class="booking-user">
@@ -18,8 +19,14 @@
             <%= booking.reservation_date %>
           </div>
           <div class="booking-buttons">
-            <%= link_to "Valider", accept_path(booking), data: { turbo_method: "PATCH" }, class: "booking-btn accept" %>
-            <%= link_to "Refuser", decline_path(booking), data: { turbo_method: "PATCH" }, class: "booking-btn refuse" %>
+            <% if booking.status == "pending" %>
+              <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
+              <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+            <% elsif booking.status == "accepted" %>
+              <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+            <% elsif booking.status == "decline" %>
+              <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
+            <% end %>
           </div>
           <%= booking.status %>
         </div>
