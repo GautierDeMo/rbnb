@@ -6,14 +6,15 @@
       <p class="content">Et si cette nuit, vous choisissiez votre rêve ? Embarquez dans un<br>voyage onirique unique. Chaque nuit devient une nouvelle aventure.</p>
     </div>
   </div>
-
+</div>
+<div id="dreams" data-controller="categories">
   <!-- CATEGORY -->
   <div class="categories-container">
     <% Dream::DREAM_CATEGORIES.each do |category| %>
-      <button class="category <%= 'active' if params[:category] == category %>">
-        <img src="<%= asset_path("categories/#{category.parameterize}.svg") %>" alt="<%= category %>">
+      <%= link_to dreams_path(category: category, anchor: "dreams"), class: "text-decoration-none category #{ 'active' if params[:category] == category}" do %>
+        <%= image_tag "categories/#{category.parameterize}.svg", alt: category  %>
         <p class="category-title"><%= category %></p>
-      </button>
+      <% end %>
     <% end %>
   </div>
 

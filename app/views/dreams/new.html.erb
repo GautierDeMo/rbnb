@@ -5,7 +5,7 @@
         <%= f.input :title, label: 'Titre' %>
         <%= f.input :description, label: 'Description' %>
         <%= f.input :picture, as: :file, label: 'Photo' %>
-        <%= f.input :category, collection: [ "Aventure", "Fantastique", "Mystère", "Relaxant", "Voyage Intérieur"], label: 'Catégorie' %>
+        <%= f.input :category, collection: Dream::DREAM_CATEGORIES, label: 'Catégorie' %>
         <%= f.input :price, label: 'Prix' %>
         <%= f.submit 'Fais nous rêver' %>
       <% end %>
