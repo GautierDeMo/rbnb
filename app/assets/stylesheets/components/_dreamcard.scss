@@ -83,6 +83,17 @@
   color: white;
 }
 
+.dreamcard-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.btn-delete {
+  width: 55px !important;
+  height: 55px !important;
+}
+
+
 @media (max-width: 1400px) {
   .dreamcard-container {
       grid-template-columns: repeat(3, 1fr); /* 3 cartes sur écran moyen */

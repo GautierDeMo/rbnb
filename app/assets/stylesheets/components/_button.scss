@@ -8,7 +8,20 @@
   background: #5D63F1;
   text-decoration: none;
   color: white;
-  color: #FFF;
   font-size: 18px;
   font-weight: 400;
+  width: 100%;
+
+  .accept {
+    background-color: #00C24A;
+  }
+
+  .refuse {
+    background-color: #A60101;
+  }
+
+  .disabled {
+    color: #545454;
+    background-color: #232545;
+  }
 }
