@@ -7,6 +7,7 @@ class DreamsController < ApplicationController
     else
       @dreams = Dream.all
     end
+    
     @markers = @dreams.geocoded.map do |dream|
       {
         lat: dream.latitude,
