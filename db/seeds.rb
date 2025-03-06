@@ -2,19 +2,31 @@ require "open-uri"
 
 puts "Deleting all..."
 Booking.destroy_all
+Review.destroy_all
 Dream.destroy_all
 User.destroy_all
 
 puts "Adding user#1..."
 
-@user = User.create!(
+@user1 = User.create!(
   email: "admin@admin",
   password: "adminadmin",
   password_confirmation: "adminadmin",
   username: "admin"
 )
 
-puts "User#1 are now in the database!✅"
+puts "User#{@user1[:id]} is now in the database!✅"
+
+puts "Adding user#2..."
+
+@user2 = User.create!(
+  email: "gogo@gogo",
+  password: "gogogogo",
+  password_confirmation: "gogogogo",
+  username: "gogo"
+)
+
+puts "User#{@user2[:id]} is now in the database!✅"
 
 puts "Adding new dreams..."
 
@@ -26,7 +38,7 @@ dreams = [
     category: "Aventure",
     price: 5,
     address: "12 Rue des Lilas, Paris",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "La Ville qui Chante",
@@ -35,7 +47,7 @@ dreams = [
     category: "Fantastique",
     price: 2,
     address: "23 Rue du Château, Nantes",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "L’Île aux Souvenirs Perdus",
@@ -44,7 +56,7 @@ dreams = [
     category: "Nostalgie",
     price: 6,
     address: "7 Place de la Bourse, Bordeaux",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "Le Grand Bal des Ombres",
@@ -53,7 +65,7 @@ dreams = [
     category: "Surréaliste",
     price: 4,
     address: "18 Rue de la Liberté, Dijon",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "La Chute Infinie",
@@ -62,7 +74,7 @@ dreams = [
     category: "Surréaliste",
     price: 5,
     address: "5 Rue des Fleurs, Nice",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "Le Marché des Émotions",
@@ -71,7 +83,7 @@ dreams = [
     category: "Fantastique",
     price: 7,
     address: "30 Avenue de Bretagne, Lille",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "Les Rues du Temps",
@@ -80,7 +92,7 @@ dreams = [
     category: "Exploration",
     price: 6,
     address: "22 Rue Victor Hugo, Rouen",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "L’Océan des Étoiles",
@@ -89,7 +101,7 @@ dreams = [
     category: "Science-fiction",
     price: 8,
     address: "8 Avenue des Champs-Élysées, Paris",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "Le Cirque des Merveilles",
@@ -98,7 +110,7 @@ dreams = [
     category: "Expérience immersive",
     price: 7,
     address: "14 Rue des Acacias, Strasbourg",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "La Forêt des Murmures",
@@ -107,7 +119,7 @@ dreams = [
     category: "Relaxant",
     price: 5,
     address: "9 Place du Capitole, Toulouse",
-    user_id: @user.id
+    user_id: @user1.id
   },
   {
     title: "Le Lac des Réflexions",
@@ -116,7 +128,7 @@ dreams = [
     category: "Romance",
     price: 6,
     address: "27 Avenue Jean Médecin, Nice",
-    user_id: @user.id
+    user_id: @user1.id
   }
 ]
 
@@ -133,7 +145,33 @@ dreams.each do |dream_data|
   file = URI.open(dream_data[:picture])
   dream.picture.attach(io: file, filename: "dream_#{dream.id}.webp", content_type: "image/webp")
 
-  puts "✅ '#{dream[:title]}' has been added!"
+  puts "✅ Dream '#{dream[:id]}' has been added!"
 end
 
 puts "All dreams are now in the database!✅"
+
+puts "Adding reviews..."
+
+reviews = [
+  {
+    content: 'Ce rêve était trop bien !',
+    user_id: "#{@user1[:id]}".to_i,
+    dream_id: 79,
+  },
+  {
+    content: 'Ce rêve était bof...',
+    user_id: "#{@user2[:id]}".to_i,
+    dream_id: 79,
+  },
+]
+
+reviews.each do |review_data|
+  review = Review.create!(
+    content: review_data[:content],
+    user_id: review_data[:user_id],
+    dream_id: review_data[:dream_id]
+  )
+  puts "✅ '#{review[:user_id]}' has been added!"
+end
+
+puts "All reviews are now in the database!✅"
