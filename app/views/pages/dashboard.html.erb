@@ -7,8 +7,10 @@
     <% allbookings = dream.bookings %>
     <% allbookings.each do |booking| %>
       <% if (booking.dream == dream) %>
-
         <div class="bookingcard">
+          <div class="tag">
+            <%= booking.status %>
+          </div>
           <h3><%= dream.title %></h3>
           <div class="booking-user">
             <%= image_tag "user.svg" %>
@@ -28,7 +30,6 @@
               <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
             <% end %>
           </div>
-          <%= booking.status %>
         </div>
       <% end %>
     <% end %>
@@ -37,19 +38,21 @@
 
 <!-- RÉSERVATION -->
 <h2 class="text-white">Mes réservations</h2>
-<ul>
+<div class="bookingcard-container" data-controller="buttonsvalidation">
   <% @bookings.each do |booking| %>
-    <li>
-      <%= booking.user_id %>
-      <%= booking.dream.title %>
-      <%= booking.reservation_date %>
-      <%= link_to "Annuler réservation",
-      booking_path(booking),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
-    </li>
+    <div class="bookingcard">
+      <div class="tag">
+        <%= booking.status %>
+      </div>
+      <h3><%= booking.dream.title %></h3>
+      <div class="booking-date">
+          <%= image_tag "date.svg" %>
+          <%= booking.reservation_date %>
+      </div>
+      <%= link_to "Annuler réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button"%>
+    </div>
   <% end %>
-</ul>
+</div>
 
 <!-- RÊVES À LOUER -->
 <h2 class="text-white">Mes rêves</h2>

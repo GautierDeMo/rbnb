@@ -8,7 +8,7 @@
 }
 
 .bookingcard {
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   background: #2D2F3B;
   color: white;
@@ -57,4 +57,17 @@
   flex: 1 0 0;
   border-radius: 5px;
   color: white;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #2E236C;
+  color: white;
+  align-self: flex-start;
+  margin-bottom: 5px;
 }
