@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :dreams do
     resources :bookings, only: [:index, :show, :new, :create]
+    resources :reviews, only: [:new, :create]
   end
 
   resources :bookings, only: :destroy
