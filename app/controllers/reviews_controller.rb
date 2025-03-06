@@ -1,16 +1,13 @@
 class ReviewsController < ApplicationController
-  def new
-  end
-
+  before_action :set_dream
   def create
-    @review = Review.new(review_params)
+    @review = @dream.reviews.new(review_params)
     @review.user = current_user
-    puts 'avant la recherche'
-    @dream = Dream.find(params[:dream_id])
-    puts 'après la recherche'
-    @review.dream = @dream
-    @review.save
-    redirect_to dream_path(@dream)
+    if @review.save
+      redirect_to @dream, notice: 'Review was successfully created.'
+    else
+      render 'dreams/show'
+    end
   end
 
   private
@@ -19,4 +16,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:content, :user_id, :dream_id)
   end
 
+  def set_dream
+    @dream = Dream.find(params[:dream_id])
+  end
 end
