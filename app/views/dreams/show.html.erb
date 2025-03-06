@@ -38,16 +38,29 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-3">
-    <%= link_to 'Ajoute un commentaire', new_dream_review_path(@dream), class: 'btn btn-primary mb-3' %>
+<div data-controller="review" class="">
+  <div class="row">
+    <div class="col-3">
+      <button class="btn btn-outline-primary mb-3" data-action="click->review#fire">Ajoute un commentaire</button>
+    </div>
+  </div>
+
+  <div class="row d-none" data-review-target="form">
+    <div class="col text-white">
+      <%= simple_form_for([@dream, @user, @review]) do |f| %>
+        <%= f.input :content, label: 'Contenu' %>
+        <%= f.submit 'Commenter' %>
+      <% end %>
+    </div>
   </div>
 </div>
+  </div>
 
-<div class="row">
-  <div class="col-12 text-white">
-    <% @reviews.each do |review| %>
-      <%= review.content %>
-    <% end %>
+  <div class="row">
+    <div class="col-12 text-white" style='background-color: #15161a;'>
+      <% @reviews.each do |review| %>
+        <%= review.content %>
+      <% end %>
+    </div>
   </div>
 </div>

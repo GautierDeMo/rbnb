@@ -18,6 +18,7 @@ class DreamsController < ApplicationController
     @dream = Dream.find(params[:id])
     @booking = Booking.new
     @reviews = Review.all
+    @review = Review.new
   end
 
   def new
