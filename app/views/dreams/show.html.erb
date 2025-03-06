@@ -28,7 +28,7 @@
           <%= simple_form_for [@dream, @booking] do |f| %>
             <%= f.input :reservation_date,
                         as: :string,
-                        input_html: { data: { controller: "datepicker" } },
+                        input_html: { data: { controller: "datepicker" }, class: "d-none", readonly: true },
                         label: 'Date de réservation'%>
             <%= f.submit "Réserve ton rêve !"%>
           <% end %>
