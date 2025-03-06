@@ -156,12 +156,12 @@ reviews = [
   {
     content: 'Ce rêve était trop bien !',
     user_id: "#{@user1[:id]}".to_i,
-    dream_id: 79,
+    dream_id: "#{Dream.first[:id].to_i}",
   },
   {
     content: 'Ce rêve était bof...',
     user_id: "#{@user2[:id]}".to_i,
-    dream_id: 79,
+    dream_id: "#{Dream.first[:id].to_i}",
   },
 ]
 
