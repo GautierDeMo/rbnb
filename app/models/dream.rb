@@ -1,7 +1,17 @@
 class Dream < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :global_search,
+  against: [:title, :description],
+  associated_against: {
+    user: [:username]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
+
   belongs_to :user
   has_many :bookings
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_one_attached :picture
 
   geocoded_by :address

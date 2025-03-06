@@ -28,7 +28,7 @@
           <%= simple_form_for [@dream, @booking] do |f| %>
             <%= f.input :reservation_date,
                         as: :string,
-                        input_html: { data: { controller: "datepicker" } },
+                        input_html: { data: { controller: "datepicker" }, class: "d-none", readonly: true },
                         label: 'Date de réservation'%>
             <%= f.submit "Réserve ton rêve !"%>
           <% end %>
@@ -39,7 +39,7 @@
 </div>
 
 <div data-controller="review" class="">
-  <div class="row">
+  <div class="row d-flex justify-content-center mb-3">
     <div class="col-3">
       <button class="btn btn-outline-primary mb-3" data-action="click->review#fire">Ajoute un commentaire</button>
     </div>
@@ -47,19 +47,26 @@
 
   <div class="row d-none" data-review-target="form">
     <div class="col text-white">
-      <%= simple_form_for([@dream, @user, @review]) do |f| %>
+      <%= simple_form_for([@dream, @review]) do |f| %>
         <%= f.input :content, label: 'Contenu' %>
-        <%= f.submit 'Commenter' %>
+        <%= f.submit 'Commenter', class: "mb-3"%>
       <% end %>
     </div>
-  </div>
-</div>
   </div>
 
   <div class="row">
     <div class="col-12 text-white" style='background-color: #15161a;'>
-      <% @reviews.each do |review| %>
-        <%= review.content %>
+      <% @dream.reviews.each do |review| %>
+        <div class="row">
+          <div class="col-6">
+            <div class="card-product">
+              <div class="card-product-infos border-top pt-3 pb-1">
+                <h2><%= review.user.username %></h2>
+                <p><%= review.content %></p>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

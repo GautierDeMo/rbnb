@@ -79,3 +79,5 @@ gem "devise"
 gem "dotenv-rails"
 
 gem "geocoder"
+
+gem "pg_search"

@@ -2,12 +2,12 @@ class DreamsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    if params[:category].present?
-      @dreams = Dream.where(category: params[:category])
+    if params[:query].present?
+      @dreams = Dream.global_search(params[:query])
     else
       @dreams = Dream.all
     end
-    # The `geocoded` scope filters only dreams with coordinates
+    
     @markers = @dreams.geocoded.map do |dream|
       {
         lat: dream.latitude,
