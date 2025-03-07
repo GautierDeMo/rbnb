@@ -12,8 +12,11 @@ puts "Adding user#1..."
   email: "admin@admin",
   password: "adminadmin",
   password_confirmation: "adminadmin",
-  username: "admin"
+  username: "itsjack",
 )
+
+file1 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348891/airbnb-dreams/qexla3sitypbap9j14pp.jpg")
+@user1.photo.attach(io: file1, filename: "user1.jpg", content_type: "image/jpg")
 
 puts "User#{@user1[:id]} - @#{@user1[:username]} is now in the database!✅"
 
@@ -23,17 +26,25 @@ puts "Adding user#2..."
   email: "julien@email.com",
   password: "adminadmin",
   password_confirmation: "adminadmin",
-  username: "itsjulien"
+  username: "itsjulien",
 )
 
+file2 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348890/airbnb-dreams/gdtfbkmds5xalfakaccj.avif")
+@user2.photo.attach(io: file2, filename: "user2.avif", content_type: "image/avif")
+
 puts "User#{@user2[:id]} - @#{@user2[:username]} is now in the database! ✅"
+
+puts "Adding user#3..."
 
 @user3 = User.create!(
   email: "carla@email.com",
   password: "adminadmin",
   password_confirmation: "adminadmin",
-  username: "itscarla"
+  username: "itscarla",
 )
+
+file3 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348889/airbnb-dreams/mnblawgipsvadh5eb8hp.avif")
+@user3.photo.attach(io: file3, filename: "user3.avif", content_type: "image/avif")
 
 puts "User#{@user3[:id]} - @#{@user3[:username]} is now in the database! ✅"
 
@@ -184,3 +195,5 @@ reviews.each do |review_data|
 end
 
 puts "All reviews are now in the database! ✅"
+
+puts "Everything is ok!✅"
