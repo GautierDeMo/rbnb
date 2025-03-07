@@ -30,6 +30,11 @@
       <p >(<%= current_user.bookings.count %>)</p>
     </div>
     <div class="bookingcard-container" data-controller="buttonsvalidation">
+    <% if @bookings.count.zero? %>
+      <div class="bookingcard">
+        <p>Pas de réservation</p>
+      </div>
+    <% else %>
       <% @bookings.each do |booking| %>
         <div class="bookingcard">
           <% if booking.status == "pending" %>
@@ -53,6 +58,7 @@
           <%= link_to "Annuler réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button"%>
         </div>
       <% end %>
+    <% end %>
     </div>
   </div>
 
@@ -67,40 +73,46 @@
       <p>(<%= current_user.dreams.joins(:bookings).count %>)</p>
     </div>
     <div class="bookingcard-container" data-controller="buttonsvalidation">
-      <% @dreams.each do |dream| %>
-        <% allbookings = dream.bookings %>
-        <% allbookings.each do |booking| %>
-          <% if booking.dream == dream && booking.status != "decline"%>
-            <div class="bookingcard">
-              <% if booking.status == "pending" %>
-                <div class="tag pending">
-                  <p>En attente</p>
-                </div>
-              <% elsif booking.status == "accepted" %>
-                <div class="tag accepted">
-                  <p>Validée</p>
-                </div>
-              <% elsif booking.status == "decline" %>
-                <div class="tag decline">
-                  <p>Refusée</p>
-                </div>
-              <% end %>
-              <h3><%= dream.title %></h3>
-              <div class="booking-user">
-                <%= image_tag "user.svg" %>
-                <%= User.find(booking.user_id).username %>
-              </div>
-              <div class="booking-date">
-                <%= image_tag "date.svg" %>
-                <%= booking.reservation_date %>
-              </div>
-              <div class="booking-buttons">
+      <% if current_user.dreams.joins(:bookings).count.zero? %>
+        <div class="bookingcard">
+          <p>Pas de réservation</p>
+        </div>
+      <% else %>
+        <% @dreams.each do |dream| %>
+          <% allbookings = dream.bookings %>
+          <% allbookings.each do |booking| %>
+            <% if booking.dream == dream && booking.status != "decline"%>
+              <div class="bookingcard">
                 <% if booking.status == "pending" %>
-                  <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
-                  <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+                  <div class="tag pending">
+                    <p>En attente</p>
+                  </div>
+                <% elsif booking.status == "accepted" %>
+                  <div class="tag accepted">
+                    <p>Validée</p>
+                  </div>
+                <% elsif booking.status == "decline" %>
+                  <div class="tag decline">
+                    <p>Refusée</p>
+                  </div>
                 <% end %>
+                <h3><%= dream.title %></h3>
+                <div class="booking-user">
+                  <%= image_tag "user.svg" %>
+                  <%= User.find(booking.user_id).username %>
+                </div>
+                <div class="booking-date">
+                  <%= image_tag "date.svg" %>
+                  <%= booking.reservation_date %>
+                </div>
+                <div class="booking-buttons">
+                  <% if booking.status == "pending" %>
+                    <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
+                    <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+                  <% end %>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
