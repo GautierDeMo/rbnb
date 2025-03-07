@@ -58,7 +58,7 @@ dreams = [
     category: "Aventure",
     price: 5,
     address: "Darvaza Gas Crater, Karakum Desert, Turkmenistan",
-    user_id: @user2.id
+    user_id: @user3.id
   },
   {
     title: "La Ville qui Chante",
@@ -67,7 +67,7 @@ dreams = [
     category: "Fantastique",
     price: 2,
     address: "Reed Flute Cave, 1 Ludi Rd, Xiufeng District, Guilin, Guangxi, China",
-    user_id: @user2.id
+    user_id: @user3.id
   },
   {
     title: "L’Île aux Souvenirs Perdus",
@@ -76,7 +76,7 @@ dreams = [
     category: "Nostalgie",
     price: 6,
     address: "Socotra Island, Hadibu, Yemen",
-    user_id: @user2.id
+    user_id: @user3.id
   },
   {
     title: "Le Grand Bal des Ombres",
@@ -85,7 +85,7 @@ dreams = [
     category: "Surréaliste",
     price: 4,
     address: "Palais Idéal, 8 Rue du Palais, 26390 Hauterives, France",
-    user_id: @user2.id
+    user_id: @user3.id
   },
   {
     title: "La Chute Infinie",
