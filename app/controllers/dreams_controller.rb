@@ -14,7 +14,7 @@ class DreamsController < ApplicationController
       {
         lat: dream.latitude,
         lng: dream.longitude,
-        info_window_html: render_to_string(partial: "dreams/info_window", locals: {dream: dream}, formats: :html),
+        info_window_html: render_to_string(partial: "dreams/info_window", locals: { dream: dream }, formats: :html),
         marker_html: render_to_string(partial: "dreams/marker", formats: :html)
       }
     end
