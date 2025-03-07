@@ -4,10 +4,12 @@ class DreamsController < ApplicationController
   def index
     if params[:query].present?
       @dreams = Dream.global_search(params[:query])
+    elsif params[:category].present?
+      @dreams = Dream.where(category: params[:category])
     else
       @dreams = Dream.all
     end
-    
+
     @markers = @dreams.geocoded.map do |dream|
       {
         lat: dream.latitude,
