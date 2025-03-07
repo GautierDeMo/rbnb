@@ -18,6 +18,11 @@ class DreamsController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
