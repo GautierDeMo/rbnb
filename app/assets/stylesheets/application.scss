@@ -21,3 +21,15 @@
 @import "components/bookingcard";
 @import "components/profil";
 @import "components/search";
+
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #15161a;
+}
+
+html {
+  height: 100%;
+}

@@ -4,6 +4,7 @@
   color: white;
   border-bottom: 1px solid #242529;
   height: 80px;
+  min-height: 80px;
   padding: 0px 30px;
 }
 
@@ -16,6 +17,11 @@
 }
 
 .connect {
-    width: 123px;
-    text-align: right;
-  }
+  width: 123px;
+  text-align: right;
+}
+
+.profil-size {
+  width: 123px;
+  justify-content: flex-end
+}

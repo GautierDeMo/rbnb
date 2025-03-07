@@ -3,7 +3,7 @@
 
     <!-- Logo à gauche -->
     <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "dreambnb.svg" %>
+      <%= image_tag "dreambnb.svg"%>
     <% end %>
 
     <%#<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,10 +23,10 @@
       </div>
 
       <!-- Menu utilisateur à droite -->
-      <div class="d-flex">
-        <ul class="navbar-nav me-auto">
+      <div class="d-flex ms-auto">
+        <ul class="navbar-nav ms-auto">
           <% if user_signed_in? %>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown profil-size">
             <%  if (current_user.photo.attached?) %>
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
