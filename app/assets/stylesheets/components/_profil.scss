@@ -1,0 +1,56 @@
+.profil-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.profil-title {
+  font-size: 30px;
+  color: white;
+}
+
+.profil-subtitle {
+  font-size: 20px;
+  color: white;
+}
+
+.profil-card {
+  flex: 2;
+  background-color: #2D2F3B;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: white;
+}
+
+.infos-section {
+  padding-top: 30px;
+}
+
+.infos-card {
+  flex: 1;
+  background-color: #2D2F3B;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: white;
+}
+
+
+.profil-card, .infos-card {
+  height: auto;
+}
+
+hr {
+  border-top: 3px solid #2D2F3B;
+  width: 100%;
+  margin: 0;
+}
