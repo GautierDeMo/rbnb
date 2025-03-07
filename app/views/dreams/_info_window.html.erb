@@ -1,6 +1,10 @@
 <%= link_to dream_path(dream), class: "text-decoration-none" do %>
   <div>
-    <h2 class="no-margin text-white fs-5"><%= dream.title %></h2>
-    <p class="no-margin text-white fs-8"><%= dream.address %></p>
+    <img class="dreamcard-image mb-0 no-rounded-bot" src="<%= cl_image_path dream.picture.key %>" alt="">
+    <div class= "py-2">
+      <h2 class="no-margin text-white fs-5"><%= dream.title %></h2>
+      <p class="no-margin text-white fs-8"><%= dream.address %></p>
+      <p class="no-margin text-white fs-8"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
+    </div>
   </div>
 <% end %>
