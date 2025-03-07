@@ -12,21 +12,41 @@ puts "Adding user#1..."
   email: "admin@admin",
   password: "adminadmin",
   password_confirmation: "adminadmin",
-  username: "admin"
+  username: "itsjack",
 )
 
-puts "User#{@user1[:id]} is now in the database!✅"
+file1 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348891/airbnb-dreams/qexla3sitypbap9j14pp.jpg")
+@user1.photo.attach(io: file1, filename: "user1.jpg", content_type: "image/jpg")
+
+puts "User#{@user1[:id]} - @#{@user1[:username]} is now in the database!✅"
 
 puts "Adding user#2..."
 
 @user2 = User.create!(
-  email: "gogo@gogo",
-  password: "gogogogo",
-  password_confirmation: "gogogogo",
-  username: "gogo"
+  email: "julien@email.com",
+  password: "adminadmin",
+  password_confirmation: "adminadmin",
+  username: "itsjulien",
 )
 
-puts "User#{@user2[:id]} is now in the database!✅"
+file2 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348890/airbnb-dreams/gdtfbkmds5xalfakaccj.avif")
+@user2.photo.attach(io: file2, filename: "user2.avif", content_type: "image/avif")
+
+puts "User#{@user2[:id]} - @#{@user2[:username]} is now in the database! ✅"
+
+puts "Adding user#3..."
+
+@user3 = User.create!(
+  email: "carla@email.com",
+  password: "adminadmin",
+  password_confirmation: "adminadmin",
+  username: "itscarla",
+)
+
+file3 = URI.open("https://res.cloudinary.com/durjoyq8p/image/upload/v1741348889/airbnb-dreams/mnblawgipsvadh5eb8hp.avif")
+@user3.photo.attach(io: file3, filename: "user3.avif", content_type: "image/avif")
+
+puts "User#{@user3[:id]} - @#{@user3[:username]} is now in the database! ✅"
 
 puts "Adding new dreams..."
 
@@ -37,8 +57,8 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115744/airbnb-dreams/gvluuqo7wvhvx9yrvddp.webp",
     category: "Aventure",
     price: 5,
-    address: "12 Rue des Lilas, Paris",
-    user_id: @user1.id
+    address: "Darvaza Gas Crater, Karakum Desert, Turkmenistan",
+    user_id: @user2.id
   },
   {
     title: "La Ville qui Chante",
@@ -46,8 +66,8 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115735/airbnb-dreams/qxir6bjalajc5kwquugy.webp",
     category: "Fantastique",
     price: 2,
-    address: "23 Rue du Château, Nantes",
-    user_id: @user1.id
+    address: "Reed Flute Cave, 1 Ludi Rd, Xiufeng District, Guilin, Guangxi, China",
+    user_id: @user2.id
   },
   {
     title: "L’Île aux Souvenirs Perdus",
@@ -55,8 +75,8 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115746/airbnb-dreams/zze0xmofwoeptalbc4zw.webp",
     category: "Nostalgie",
     price: 6,
-    address: "7 Place de la Bourse, Bordeaux",
-    user_id: @user1.id
+    address: "Socotra Island, Hadibu, Yemen",
+    user_id: @user2.id
   },
   {
     title: "Le Grand Bal des Ombres",
@@ -64,14 +84,14 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115747/airbnb-dreams/sldvhgvdyuwlpzaqyohg.webp",
     category: "Surréaliste",
     price: 4,
-    address: "18 Rue de la Liberté, Dijon",
-    user_id: @user1.id
+    address: "Palais Idéal, 8 Rue du Palais, 26390 Hauterives, France",
+    user_id: @user2.id
   },
   {
     title: "La Chute Infinie",
     description: "Vous tombez, mais tout est paisible. Autour de vous, des fragments de souvenirs flottent, suspendus dans l’air. Vous voyez des portes ouvertes au milieu du ciel : certaines mènent à des forêts, d’autres à des bibliothèques flottantes ou à des ruines extraterrestres. À vous de choisir où atterrir… ou de continuer à chuter.",
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115747/airbnb-dreams/shpq0f8jhrv4mhpzxxuj.webp",
-    category: "Surréaliste",
+    category: "Valley of Geysers, Kamchatka Krai, Russia",
     price: 5,
     address: "5 Rue des Fleurs, Nice",
     user_id: @user1.id
@@ -82,7 +102,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115776/airbnb-dreams/cqoatqqodhdtjysbaswy.webp",
     category: "Fantastique",
     price: 7,
-    address: "30 Avenue de Bretagne, Lille",
+    address: "Marrakech Souk, Medina, Marrakech, Morocco",
     user_id: @user1.id
   },
   {
@@ -91,7 +111,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115770/airbnb-dreams/kagvjrlwkoxw18zciwf2.webp",
     category: "Exploration",
     price: 6,
-    address: "22 Rue Victor Hugo, Rouen",
+    address: "San Gimignano, Tuscany, Italy",
     user_id: @user1.id
   },
   {
@@ -100,7 +120,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115776/airbnb-dreams/obmkiipjbdrpincxcxcc.webp",
     category: "Science-fiction",
     price: 8,
-    address: "8 Avenue des Champs-Élysées, Paris",
+    address: "Vaadhoo Island, Raa Atoll, Maldives",
     user_id: @user1.id
   },
   {
@@ -109,7 +129,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115774/airbnb-dreams/r8h9ukq6hl57flzk61tf.webp",
     category: "Expérience immersive",
     price: 7,
-    address: "14 Rue des Acacias, Strasbourg",
+    address: "Cirque du Soleil, Montreal, Canada",
     user_id: @user1.id
   },
   {
@@ -118,7 +138,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115772/airbnb-dreams/xtcjwnc6jcbp8azcnyip.webp",
     category: "Relaxant",
     price: 5,
-    address: "9 Place du Capitole, Toulouse",
+    address: "Crooked Forest, Nowe Czarnowo, 74-105 Gryfino, Poland",
     user_id: @user1.id
   },
   {
@@ -127,7 +147,7 @@ dreams = [
     picture: "https://res.cloudinary.com/durjoyq8p/image/upload/v1741115770/airbnb-dreams/apcitf1v88yms0u0rw25.webp",
     category: "Romance",
     price: 6,
-    address: "27 Avenue Jean Médecin, Nice",
+    address: "Laguna Colorada, Bolivia",
     user_id: @user1.id
   }
 ]
@@ -145,22 +165,22 @@ dreams.each do |dream_data|
   file = URI.open(dream_data[:picture])
   dream.picture.attach(io: file, filename: "dream_#{dream.id}.webp", content_type: "image/webp")
 
-  puts "✅ Dream '#{dream[:id]}' has been added!"
+  puts "Dream#{dream[:id]} - '#{dream[:title]}' has been added! ✅"
 end
 
-puts "All dreams are now in the database!✅"
+puts "All dreams are now in the database! ✅"
 
 puts "Adding reviews..."
 
 reviews = [
   {
     content: 'Ce rêve était trop bien !',
-    user_id: "#{@user1[:id]}".to_i,
+    user_id: "#{@user3[:id]}".to_i,
     dream_id: "#{Dream.first[:id].to_i}",
   },
   {
     content: 'Ce rêve était bof...',
-    user_id: "#{@user2[:id]}".to_i,
+    user_id: "#{@user1[:id]}".to_i,
     dream_id: "#{Dream.first[:id].to_i}",
   },
 ]
@@ -174,4 +194,6 @@ reviews.each do |review_data|
   puts "✅ '#{review[:user_id]}' has been added!"
 end
 
-puts "All reviews are now in the database!✅"
+puts "All reviews are now in the database! ✅"
+
+puts "Everything is ok!✅"
