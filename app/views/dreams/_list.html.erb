@@ -1,0 +1,7 @@
+<% if dreams.any? %>
+  <% dreams.each do |dream| %>
+    <%= render "dreams/dream", dream: dream %>
+  <% end %>
+<% else %>
+  <em>Désolé, pas de rêves trouvés.</em>
+<% end %>

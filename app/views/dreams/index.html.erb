@@ -8,11 +8,11 @@
   </div>
 </div>
 
-<div id="dreams" data-controller="categories">
+<div id="categories" data-controller="search">
 
   <!-- BARRE DE RECHERCHE -->
     <div class="search-container">
-      <%= form_with url: dreams_path, method: :get, class: "d-flex search-form" do %>
+      <%= form_with url: dreams_path, method: :get, class: "d-flex search-form", data: { action: "click->search#fire", search_target: "form" } do %>
         <%= text_field_tag :query,
               params[:query],
               class: "form-control search-input",
@@ -25,7 +25,7 @@
   <!-- CATEGORY -->
   <div class="categories-container">
     <% Dream::DREAM_CATEGORIES.each do |category| %>
-      <%= link_to dreams_path(category: category, anchor: "dreams"), class: "text-decoration-none category #{ 'active' if params[:category] == category}" do %>
+      <%= link_to dreams_path(category: category, anchor: "categories"), class: "text-decoration-none category #{ 'active' if params[:category] == category}" do %>
         <%= image_tag "categories/#{category.parameterize}.svg", alt: category  %>
         <p class="category-title"><%= category %></p>
       <% end %>
@@ -33,40 +33,8 @@
   </div>
 
   <!-- DREAM LIST -->
-  <div class="dreamcard-container">
-    <% if @dreams.any? %>
-      <% @dreams.each do |dream| %>
-        <%  if (dream.picture.attached?) %>
-          <div class="dreamcard">
-            <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
-            <div class="dreamcard-info">
-              <p class="tag"> <%= dream.category %> </p>
-              <h2> <%= dream.title %> </h2>
-              <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
-              <div class="dreamcard-price">
-                <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
-                <p>/nuit</p>
-              </div>
-              <%= link_to "Voir le rêve", dream_path(dream), class: "button" %>
-            </div>
-          </div>
-        <% else %>
-          <div class="dreamcard">
-            <img class="dreamcard-image" src="#" alt="">
-            <div class="dreamcard-info">
-              <h2> <%= dream.title %> </h2>
-              <div class="dreamcard-tags">
-                <p class="tag"> <%= dream.category %> </p>
-              </div>
-              <p class="dreamcard-text"> <%= dream.price %> </p>
-              <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% else %>
-      <em>Désolé, pas de rêves trouvés.</em>
-    <% end %>
+  <div class="dreamcard-container" data-search-target="results">
+    <%= render "dreams/list", dreams: @dreams %>
   </div>
 </div>
 
