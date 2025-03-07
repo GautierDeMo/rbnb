@@ -1,13 +1,16 @@
 <div class="container">
+  <h1 class="text-white text-center mb-3">Ajoute un rêve !</h1>
   <div class="row">
     <div class="col text-white">
       <%= simple_form_for(@dream) do |f| %>
-        <%= f.input :title, label: 'Titre' %>
+        <%= f.input :title, label: 'Titre', class:"input" %>
         <%= f.input :description, label: 'Description' %>
         <%= f.input :picture, as: :file, label: 'Photo' %>
         <%= f.input :category, collection: Dream::DREAM_CATEGORIES, label: 'Catégorie' %>
         <%= f.input :price, label: 'Prix' %>
-        <%= f.submit 'Fais nous rêver' %>
+        <div class="d-flex justify-content-center p-3">
+          <%= f.submit 'Fais nous rêver', class: "button category active submit" %>
+        </div>
       <% end %>
     </div>
   </div>
