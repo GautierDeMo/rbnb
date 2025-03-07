@@ -41,7 +41,7 @@ class DreamsController < ApplicationController
     @dream = Dream.new(dream_params)
     @dream.user_id = @user.id
     @dream.save
-    redirect_to dream_path(@dream)
+    redirect_to dashboard_path()
   end
 
   def destroy
