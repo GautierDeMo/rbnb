@@ -15,14 +15,15 @@
     <%= form_with url: dreams_path, method: :get, class: "d-flex search-form", data: { action: "click->search#fire", search_target: "form" } do %>
       <%= text_field_tag :query,
             params[:query],
-            class: "form-control search-input be-0",
+            class: "form-control search-input border border-0",
             placeholder: "Tapez un mot-clé...",
-            data: { reset_target: "textField" }
-        %>
-      <% if false && text_field_tag.value != "" %>
-        <%= button_tag(type: 'button', data: { action: "click->reset#clear" }, class: "button-close") do %>
-          <i class="fa-solid fa-x icon"></i>
-        <% end %>
+            data: {
+              reset_target: "textField",
+              action: 'input->reset#changeInput'
+            }
+      %>
+      <%= button_tag(type: 'button', data: { action: "click->reset#clear", reset_target: 'button' }, class: "button-close d-none") do %>
+        <i class="fa-solid fa-x icon"></i>
       <% end %>
       <%= submit_tag "Recherche", name: "", class: "btn btn-search search-button" %>
     <% end %>
