@@ -61,23 +61,3 @@
     font-size: 20px;
   }
 }
-
-.btn-form{
-  padding: 14px 28px;
-  border-radius: 10px;
-  background-color: #2E236C;
-  color: white;
-  font-size: 18px;
-  &:hover,
-  &:focus{
-  background-color: #21232B !important;
-  border-color: #2E236C !important;
-  color: white !important;
-  transition: background-color 0.3s ease;
-  }
-}
-
-.btn-form:hover {
-  background-color: #5D63F1;
-  color: white;
-}
