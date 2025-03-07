@@ -1,112 +1,141 @@
-<h1 class="text-white fw-medium">Dashboard</h1>
+<h1 class="text-white fw-medium">Tableau de bord</h1>
 
-<!-- RÉSERVATION EN ATTENTE -->
-<h2 class="text-white">Réservations de mes rêves</h2>
-<div class="bookingcard-container" data-controller="buttonsvalidation">
-  <% @dreams.each do |dream| %>
-    <% allbookings = dream.bookings %>
-    <% allbookings.each do |booking| %>
-      <% if booking.dream == dream && booking.status != "decline"%>
-        <div class="bookingcard">
-          <% if booking.status == "pending" %>
-            <div class="tag pending">
-              <p>En attente</p>
-            </div>
-          <% elsif booking.status == "accepted" %>
-            <div class="tag accepted">
-              <p>Validée</p>
-            </div>
-          <% elsif booking.status == "decline" %>
-            <div class="tag decline">
-              <p>Refusée</p>
-            </div>
-          <% end %>
-          <h3><%= dream.title %></h3>
-          <div class="booking-user">
-            <%= image_tag "user.svg" %>
-            <%= User.find(booking.user_id).username %>
+<!-- PROFIL -->
+<div class="profil-container">
+  <div class="profil-card">
+    <h3>Profil</h3>
+    <%= current_user.picture %>
+    <%= current_user.username %>
+    <%= current_user.email %>
+  </div>
+  <div class="infos-card">
+    <h3>Rêveur</h3>
+    <!-- Compter le nombre de réservation -->
+  </div>
+  <!-- Si reves=0 ne pas afficher -->
+  <div class="infos-card">
+    <h3>Vendeur de rêves</h3>
+    <!-- Compter le nombre de reve -->
+  </div>
+</div>
+
+<!-- RÉVEUR -->
+<div class="infos-section">
+  <h2 class="profil-title">Rêveur</h2>
+  <!-- RÉSERVATION -->
+  <h3 class="profil-subtitle">Mes réservations</h3>
+  <div class="bookingcard-container" data-controller="buttonsvalidation">
+    <% @bookings.each do |booking| %>
+      <div class="bookingcard">
+        <% if booking.status == "pending" %>
+          <div class="tag pending">
+            <p>En attente</p>
           </div>
-          <div class="booking-date">
+        <% elsif booking.status == "accepted" %>
+          <div class="tag accepted">
+            <p>Validée</p>
+          </div>
+        <% elsif booking.status == "decline" %>
+          <div class="tag decline">
+            <p>Refusée</p>
+          </div>
+        <% end %>
+        <h3><%= booking.dream.title %></h3>
+        <div class="booking-date">
             <%= image_tag "date.svg" %>
             <%= booking.reservation_date %>
-          </div>
-          <div class="booking-buttons">
+        </div>
+        <%= link_to "Annuler réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<hr />
+
+<!-- VENDEUR DE RÊVE -->
+<div class="infos-section">
+  <h2 class="profil-title">Vendeur de rêve</h2>
+  <!-- RÉSERVATION EN ATTENTE -->
+  <h3 class="profil-subtitle">Réservations de mes rêves</h3>
+  <div class="bookingcard-container" data-controller="buttonsvalidation">
+    <% @dreams.each do |dream| %>
+      <% allbookings = dream.bookings %>
+      <% allbookings.each do |booking| %>
+        <% if booking.dream == dream && booking.status != "decline"%>
+          <div class="bookingcard">
             <% if booking.status == "pending" %>
-              <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
-              <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+              <div class="tag pending">
+                <p>En attente</p>
+              </div>
+            <% elsif booking.status == "accepted" %>
+              <div class="tag accepted">
+                <p>Validée</p>
+              </div>
+            <% elsif booking.status == "decline" %>
+              <div class="tag decline">
+                <p>Refusée</p>
+              </div>
             <% end %>
+            <h3><%= dream.title %></h3>
+            <div class="booking-user">
+              <%= image_tag "user.svg" %>
+              <%= User.find(booking.user_id).username %>
+            </div>
+            <div class="booking-date">
+              <%= image_tag "date.svg" %>
+              <%= booking.reservation_date %>
+            </div>
+            <div class="booking-buttons">
+              <% if booking.status == "pending" %>
+                <%= link_to "Valider", accept_path(booking), class: "booking-btn accept", data: { turbo_method: "PATCH" } %>
+                <%= link_to "Refuser", decline_path(booking), class: "booking-btn refuse", data: { turbo_method: "PATCH" } %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<!-- RÉSERVATION -->
-<h2 class="text-white">Mes réservations</h2>
-<div class="bookingcard-container" data-controller="buttonsvalidation">
-  <% @bookings.each do |booking| %>
-    <div class="bookingcard">
-      <% if booking.status == "pending" %>
-        <div class="tag pending">
-          <p>En attente</p>
-        </div>
-      <% elsif booking.status == "accepted" %>
-        <div class="tag accepted">
-          <p>Validée</p>
-        </div>
-      <% elsif booking.status == "decline" %>
-        <div class="tag decline">
-          <p>Refusée</p>
-        </div>
-      <% end %>
-      <h3><%= booking.dream.title %></h3>
-      <div class="booking-date">
-          <%= image_tag "date.svg" %>
-          <%= booking.reservation_date %>
-      </div>
-      <%= link_to "Annuler réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button"%>
-    </div>
-  <% end %>
-</div>
+  <!-- RÊVES À LOUER -->
+  <h3 class="profil-subtitle">Mes rêves</h3>
 
-<!-- RÊVES À LOUER -->
-<h2 class="text-white">Mes rêves</h2>
-
-<div class="dreamcard-container">
-  <% @dreams.each do |dream| %>
-    <%  if (dream.picture.attached?) %>
-      <div class="dreamcard">
-        <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
-        <div class="dreamcard-info">
-          <p class="tag"> <%= dream.category %> </p>
-          <h2> <%= dream.title %> </h2>
-          <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
-          <div class="dreamcard-price">
-            <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
-            <p>/nuit</p>
-          </div>
-          <div class="dreamcard-buttons">
-            <%= link_to "Voir le rêve", dream_path(dream), class: "button btn-view"%>
-            <%= link_to dream_path(dream), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button btn-delete" do %>
-              <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <div class="dreamcard">
-        <img class="dreamcard-image" src="#" alt="">
-        <div class="dreamcard-info">
-          <h2> <%= dream.title %> </h2>
-          <div class="dreamcard-tags">
+  <div class="dreamcard-container">
+    <% @dreams.each do |dream| %>
+      <%  if (dream.picture.attached?) %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="<%= cl_image_path dream.picture.key %>" alt="">
+          <div class="dreamcard-info">
             <p class="tag"> <%= dream.category %> </p>
+            <h2> <%= dream.title %> </h2>
+            <p> <%= dream.description.truncate(100, separator: ' ') %> </p>
+            <div class="dreamcard-price">
+              <p class="price"><%= number_with_precision(dream.price, precision: 2, separator: ".") %>€</p>
+              <p>/nuit</p>
+            </div>
+            <div class="dreamcard-buttons">
+              <%= link_to "Voir le rêve", dream_path(dream), class: "button btn-view"%>
+              <%= link_to dream_path(dream), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "button btn-delete" do %>
+                <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+              <% end %>
+            </div>
           </div>
-          <p class="dreamcard-text"> <%= dream.price %> </p>
-          <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
-          <%= link_to "Supprimer", dream_path(dream), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
         </div>
-      </div>
+      <% else %>
+        <div class="dreamcard">
+          <img class="dreamcard-image" src="#" alt="">
+          <div class="dreamcard-info">
+            <h2> <%= dream.title %> </h2>
+            <div class="dreamcard-tags">
+              <p class="tag"> <%= dream.category %> </p>
+            </div>
+            <p class="dreamcard-text"> <%= dream.price %> </p>
+            <%= link_to "Voir le rêve", dream_path(dream), class: "btn btn-primary" %>
+            <%= link_to "Supprimer", dream_path(dream), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
