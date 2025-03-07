@@ -6,12 +6,21 @@ export default class extends Controller {
 
   clear() {
     this.textFieldTarget.value = "";
+    this.hideButton();
   }
 
   changeInput(event) {
     const input = event.currentTarget;
     const value = input.value;
-    // value === '' ? this.buttonTarget.class.add('d-none') : this.buttonTarget.class.remove('d-none')
-    this.buttonTarget.classList.toggle("d-none", value === "");
+    value === "" ? this.hideButton() : this.showButton();
+    // this.buttonTarget.classList.toggle("d-none", value === "");
+  }
+
+  hideButton() {
+    this.buttonTarget.classList.add("d-none");
+  }
+
+  showButton() {
+    this.buttonTarget.classList.remove("d-none");
   }
 }
